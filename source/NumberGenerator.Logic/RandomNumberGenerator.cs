@@ -118,7 +118,7 @@ namespace NumberGenerator.Logic
 
         public override string ToString()
         {
-            return $"{_observers.ToString()}";
+            return $"{nameof(RandomNumberGenerator)}";
         }
 
         /// <summary>
