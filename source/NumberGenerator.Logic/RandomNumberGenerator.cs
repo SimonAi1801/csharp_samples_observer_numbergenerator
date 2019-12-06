@@ -23,9 +23,10 @@ namespace NumberGenerator.Logic
 
         #region Fields
         private readonly Random _random;
-        private readonly IList<IObserver> _observers;
         private int _delay;
         #endregion
+
+        public IList<IObserver> Observers { get; private set; }
 
         #region Constructors
 
@@ -53,7 +54,7 @@ namespace NumberGenerator.Logic
         /// <param name="seed">Enthält die Initialisierung der Zufallszahlengenerierung.</param>
         public RandomNumberGenerator(int delay, int seed)
         {
-            _observers = new List<IObserver>();
+            Observers = new List<IObserver>();
             _random = new Random(seed);
             _delay = delay;
         }
@@ -75,12 +76,12 @@ namespace NumberGenerator.Logic
                 throw new ArgumentNullException(nameof(observer));
             }
 
-            if (_observers.Contains(observer))
+            if (Observers.Contains(observer))
             {
                 throw new InvalidOperationException();
             }
 
-            _observers.Add(observer);
+            Observers.Add(observer);
         }
 
         /// <summary>
@@ -94,12 +95,12 @@ namespace NumberGenerator.Logic
                 throw new ArgumentNullException();
             }
 
-            if (!_observers.Contains(observer))
+            if (!Observers.Contains(observer))
             {
                 throw new InvalidOperationException();
             }
 
-            _observers.Remove(observer);
+            Observers.Remove(observer);
         }
 
         /// <summary>
@@ -108,9 +109,9 @@ namespace NumberGenerator.Logic
         /// <param name="number">Die generierte Zahl.</param>
         public void NotifyObservers(int number)
         {
-            for (int i = 0; i < _observers.Count; i++)
+            for (int i = 0; i < Observers.Count; i++)
             {
-                _observers[i].OnNextNumber(number);
+                Observers[i].OnNextNumber(number);
             }
         }
 
@@ -127,9 +128,10 @@ namespace NumberGenerator.Logic
         /// </summary>
         public void StartNumberGeneration()
         {
-            while (_observers.Count > 0)
+            while (Observers.Count > 0)
             {
                 int number = _random.Next(RANDOM_MIN_VALUE, RANDOM_MAX_VALUE);
+                Console.WriteLine($"{nameof(RandomNumberGenerator)}: Number generated: '{number}'");
                 NotifyObservers(number);
                 Task.Delay(_delay);
             }

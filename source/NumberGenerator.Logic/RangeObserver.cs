@@ -62,6 +62,7 @@ namespace NumberGenerator.Logic
             if (number >= LowerRange && number <= UpperRange)
             {
                 NumbersInRange++;
+                Console.WriteLine(ToString());
             }
 
             if (NumbersInRange == NumbersOfHitsToWaitFor)

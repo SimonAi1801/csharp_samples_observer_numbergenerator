@@ -41,6 +41,7 @@ namespace NumberGenerator.Logic
             if (number >= 1 && number <= 45)
             {
                 QuickTippNumbers.Add(number);
+                Console.WriteLine(ToString());
                 _tippCount++;
             }
 
@@ -52,7 +53,7 @@ namespace NumberGenerator.Logic
 
         public override string ToString()
         {
-            return $"{nameof(QuickTippNumbers)}: {QuickTippNumbers}, {nameof(CountOfNumbersReceived)}: {CountOfNumbersReceived}";
+            return $"{nameof(QuickTippNumbers)}: {QuickTippNumbers}, {nameof(QuickTippNumbers)}: {QuickTippNumbers[_tippCount]}";
         }
 
         private void DetachFromNumberGenerator()

@@ -19,9 +19,12 @@ namespace NumberGenerator.Ui
 
 
             // Nummerngenerierung starten
+            numberGenerator.StartNumberGeneration();
             // Resultat ausgeben
-            throw new NotImplementedException();
-
+            while (numberGenerator.Observers.Count > 0)
+            {
+                Console.WriteLine(numberGenerator);
+            }
         }
     }
 }
