@@ -58,9 +58,8 @@ namespace NumberGenerator.Logic
 
         public override string ToString()
         {
-            return $"{nameof(BaseObserver)}[CountOfNumbersReceived = '{CountOfNumbersReceived}', CountOfNumbersToWaitFor = '{CountOfNumbersToWaitFor}'] => StatisticsObserver[Min = '{Min}', Max = '{Max}', Sum = '{Sum}', Avg = '{Avg}']";
+            return $"{nameof(BaseObserver)} [CountOfNumbersReceived='{CountOfNumbersReceived}', CountOfNumbersToWaitFor='{CountOfNumbersToWaitFor}'] => {nameof(StatisticsObserver)} [Min='{Min}', Max='{Max}', Sum='{Sum}', Avg='{Avg}']";
         }
-
         public override void OnNextNumber(int number)
         {
             if (number <= Min)

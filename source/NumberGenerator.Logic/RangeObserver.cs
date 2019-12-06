@@ -57,17 +57,19 @@ namespace NumberGenerator.Logic
 
         public override void OnNextNumber(int number)
         {
+            base.OnNextNumber(number);
+
+            if (number >= LowerRange && number <= UpperRange)
+            {
+                NumbersInRange++;
+            }
+
             if (NumbersInRange == NumbersOfHitsToWaitFor)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"   >> {this.GetType().Name}: Received '{CountOfNumbersReceived}' of '{CountOfNumbersToWaitFor}' => I am not interested in new numbers anymore => Detach().");
                 Console.ResetColor();
                 DetachFromNumberGenerator();
-            }
-            if (number >= LowerRange && number <= UpperRange)
-            {
-                NumbersInRange++;
-                base.OnNextNumber(number);
             }
         }
 
