@@ -72,7 +72,6 @@ namespace NumberGenerator.Logic
             }
             Sum += number;
             base.OnNextNumber(number);
-            Console.WriteLine(ToString());
         }
 
         #endregion

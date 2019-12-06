@@ -61,14 +61,16 @@ namespace NumberGenerator.Logic
 
             if (number >= LowerRange && number <= UpperRange)
             {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"   >> {this.GetType().Name}: Number is in range ('{LowerRange}'-'{UpperRange}')");
+                Console.ResetColor();
                 NumbersInRange++;
-                Console.WriteLine(ToString());
             }
 
             if (NumbersInRange == NumbersOfHitsToWaitFor)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"   >> {this.GetType().Name}: Received '{CountOfNumbersReceived}' of '{CountOfNumbersToWaitFor}' => I am not interested in new numbers anymore => Detach().");
+                Console.WriteLine($"   >> {this.GetType().Name}: Got '{NumbersInRange}' numbers in the configured range => I am not interested in new numbers anymore => Detach().");
                 Console.ResetColor();
                 DetachFromNumberGenerator();
             }

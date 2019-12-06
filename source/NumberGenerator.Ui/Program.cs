@@ -1,6 +1,8 @@
 ﻿
 using NumberGenerator.Logic;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace NumberGenerator.Ui
 {
@@ -20,11 +22,16 @@ namespace NumberGenerator.Ui
 
             // Nummerngenerierung starten
             numberGenerator.StartNumberGeneration();
+            List<int> tipps = quickTippObserver.QuickTippNumbers;
+            int[] sortedTipps = tipps.OrderBy(_ => _).ToArray();
             // Resultat ausgeben
-            while (numberGenerator.Observers.Count > 0)
-            {
-                Console.WriteLine(numberGenerator);
-            }
+
+            Console.WriteLine("--------------------------------------- Result -----------------------------------------------");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"{nameof(StatisticsObserver)}: Recevied {statisticsObserver.CountOfNumbersReceived:D5} numbers ===> {nameof(statisticsObserver.Min)}: '{statisticsObserver.Min}', {nameof(statisticsObserver.Max)}: '{statisticsObserver.Max}', {nameof(statisticsObserver.Sum)}: '{statisticsObserver.Sum}', {nameof(statisticsObserver.Avg)}: '{statisticsObserver.Avg}'");
+            Console.WriteLine($"{nameof(RangeObserver)}:      Recevied {rangeObserver.CountOfNumbersReceived:D5} numbers ===> There were '{rangeObserver.NumbersInRange}' numbers between '{rangeObserver.LowerRange}' and '{rangeObserver.UpperRange}'.");
+            Console.WriteLine($"{nameof(QuickTippObserver)}:  Recevied {quickTippObserver.CountOfNumbersReceived:D5} numbers ===> Quick-Tipp is {sortedTipps[0]} {sortedTipps[1]} {sortedTipps[2]} {sortedTipps[3]} {sortedTipps[4]} {sortedTipps[5]}.");
+            Console.ResetColor();
         }
     }
 }

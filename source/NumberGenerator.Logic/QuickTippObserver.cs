@@ -38,15 +38,17 @@ namespace NumberGenerator.Logic
         public void OnNextNumber(int number)
         {
             CountOfNumbersReceived++;
-            if (number >= 1 && number <= 45)
+            if (number >= 1 && number <= 45 && !QuickTippNumbers.Contains(number))
             {
                 QuickTippNumbers.Add(number);
-                Console.WriteLine(ToString());
                 _tippCount++;
             }
 
             if (_tippCount == 6)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"   >> {this.GetType().Name}: Got a full Quick-Tipp => I am not interested in new numbers anymore => Detach().");
+                Console.ResetColor();
                 DetachFromNumberGenerator();
             }
         }
