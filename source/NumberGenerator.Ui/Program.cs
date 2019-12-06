@@ -22,7 +22,7 @@ namespace NumberGenerator.Ui
 
             // Nummerngenerierung starten
             numberGenerator.StartNumberGeneration();
-            int[] tipps = quickTippObserver.QuickTippNumbers.OrderBy(_ => _).ToArray();
+            int[] tipps = quickTippObserver.QuickTippNumbers.OrderBy(_=>_).ToArray();
             // Resultat ausgeben
 
             Console.WriteLine("--------------------------------------- Result -----------------------------------------------");
