@@ -16,12 +16,12 @@ namespace NumberGenerator.Logic
         /// <summary>
         /// Enthält das Minimum der generierten Zahlen.
         /// </summary>
-        public int Min { get; private set; }
+        public int Min { get; private set; } = int.MaxValue;
 
         /// <summary>
         /// Enthält das Maximum der generierten Zahlen.
         /// </summary>
-        public int Max { get; private set; }
+        public int Max { get; private set; } = int.MinValue;
 
         /// <summary>
         /// Enthält die Summe der generierten Zahlen.
@@ -31,7 +31,17 @@ namespace NumberGenerator.Logic
         /// <summary>
         /// Enthält den Durchschnitt der generierten Zahlen.
         /// </summary>
-        public int Avg => throw new NotImplementedException();
+        public int Avg
+        {
+            get
+            {
+                if (CountOfNumbersReceived == 0)
+                {
+                    throw new DivideByZeroException();
+                }
+                return Sum / CountOfNumbersReceived;
+            }
+        }
 
         #endregion
 
@@ -39,7 +49,7 @@ namespace NumberGenerator.Logic
 
         public StatisticsObserver(IObservable numberGenerator, int countOfNumbersToWaitFor) : base(numberGenerator, countOfNumbersToWaitFor)
         {
-            throw new NotImplementedException();
+
         }
 
         #endregion
@@ -48,12 +58,21 @@ namespace NumberGenerator.Logic
 
         public override string ToString()
         {
-            throw new NotImplementedException();
+            return $"{nameof(BaseObserver)}[CountOfNumbersReceived = '{CountOfNumbersReceived}', CountOfNumbersToWaitFor = '{CountOfNumbersToWaitFor}'] => StatisticsObserver[Min = '{Min}', Max = '{Max}', Sum = '{Sum}', Avg = '{Avg}']";
         }
 
         public override void OnNextNumber(int number)
         {
-            throw new NotImplementedException();
+            if (number <= Min)
+            {
+                Min = number;
+            }
+            if (number > Max)
+            {
+                Max = number;
+            }
+            Sum += number;
+            base.OnNextNumber(number);
         }
 
         #endregion
