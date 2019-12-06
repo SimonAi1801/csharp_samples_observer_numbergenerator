@@ -127,7 +127,7 @@ namespace NumberGenerator.Logic
         /// </summary>
         public void StartNumberGeneration()
         {
-            while (_observers.Count >= 1)
+            while (_observers.Count > 0)
             {
                 int number = _random.Next(RANDOM_MIN_VALUE, RANDOM_MAX_VALUE);
                 NotifyObservers(number);
