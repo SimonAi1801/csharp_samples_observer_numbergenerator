@@ -19,7 +19,6 @@ namespace NumberGenerator.Ui
             RangeObserver rangeObserver = new RangeObserver(numberGenerator, 5, 200, 300);
             QuickTippObserver quickTippObserver = new QuickTippObserver(numberGenerator);
 
-
             // Nummerngenerierung starten
             numberGenerator.StartNumberGeneration();
             int[] tipps = quickTippObserver.QuickTippNumbers.OrderBy(_=>_).ToArray();

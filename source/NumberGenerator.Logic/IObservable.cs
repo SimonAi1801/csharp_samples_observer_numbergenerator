@@ -2,9 +2,8 @@
 {
     public interface IObservable
     {
-        void Attach(IObserver observer);
-        void Detach(IObserver observer);
+        delegate void NextNumberHandler(int nextNumber);
 
-        void NotifyObservers(int number);
+        public NextNumberHandler NumberChanged { get; set; }
     }
 }

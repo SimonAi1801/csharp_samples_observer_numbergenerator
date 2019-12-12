@@ -72,7 +72,7 @@ namespace NumberGenerator.Logic
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"   >> {this.GetType().Name}: Got '{NumbersInRange}' numbers in the configured range => I am not interested in new numbers anymore => Detach().");
                 Console.ResetColor();
-                DetachFromNumberGenerator();
+                _numberGenerator.NumberChanged -= OnNextNumber;
             }
         }
 

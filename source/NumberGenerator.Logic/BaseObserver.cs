@@ -7,7 +7,7 @@ namespace NumberGenerator.Logic
     /// Beobachter, welcher die Zahlen auf der Konsole ausgibt.
     /// Diese Klasse dient als Basisklasse für komplexere Beobachter.
     /// </summary>
-    public class BaseObserver : IObserver
+    public class BaseObserver
     {
         #region Fields
 
@@ -37,7 +37,7 @@ namespace NumberGenerator.Logic
             }
             _numberGenerator = numberGenerator;
             CountOfNumbersToWaitFor = countOfNumbersToWaitFor;
-            _numberGenerator.Attach(this);
+            _numberGenerator.NumberChanged += OnNextNumber;
         }
 
         #endregion
@@ -60,7 +60,7 @@ namespace NumberGenerator.Logic
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"   >> {this.GetType().Name}: Received '{CountOfNumbersReceived}' of '{CountOfNumbersToWaitFor}' => I am not interested in new numbers anymore => Detach().");
                 Console.ResetColor();
-                DetachFromNumberGenerator();
+                _numberGenerator.NumberChanged -= OnNextNumber;
             }
         }
 
@@ -69,11 +69,6 @@ namespace NumberGenerator.Logic
         public override string ToString()
         {
             return $"{nameof(BaseObserver)}";
-        }
-
-        protected void DetachFromNumberGenerator()
-        {
-            _numberGenerator.Detach(this);
         }
 
         #endregion

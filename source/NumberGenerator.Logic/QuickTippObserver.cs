@@ -7,7 +7,7 @@ namespace NumberGenerator.Logic
     /// <summary>
     /// Beobachter, welcher auf einen vollständigen Quick-Tipp wartet: 6 unterschiedliche Zahlen zw. 1 und 45.
     /// </summary>
-    public class QuickTippObserver : IObserver
+    public class QuickTippObserver
     {
         #region Fields
 
@@ -28,7 +28,7 @@ namespace NumberGenerator.Logic
         {
             QuickTippNumbers = new List<int>();
             _numberGenerator = numberGenerator;
-            _numberGenerator.Attach(this);
+            _numberGenerator.NumberChanged += OnNextNumber;
         }
 
         #endregion
@@ -49,7 +49,7 @@ namespace NumberGenerator.Logic
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"   >> {this.GetType().Name}: Got a full Quick-Tipp => I am not interested in new numbers anymore => Detach().");
                 Console.ResetColor();
-                DetachFromNumberGenerator();
+                _numberGenerator.NumberChanged -= OnNextNumber;
             }
         }
 
@@ -57,12 +57,6 @@ namespace NumberGenerator.Logic
         {
             return $"{nameof(QuickTippNumbers)}: {QuickTippNumbers}, {nameof(QuickTippNumbers)}: {QuickTippNumbers[_tippCount]}";
         }
-
-        private void DetachFromNumberGenerator()
-        {
-            _numberGenerator.Detach(this);
-        }
-
         #endregion
     }
 }
