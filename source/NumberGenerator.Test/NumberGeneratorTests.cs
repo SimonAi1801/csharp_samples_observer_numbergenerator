@@ -33,6 +33,8 @@ namespace NumberGenerator.Test
             //Arrange
             RandomNumberGenerator numberGenerator = new RandomNumberGenerator(0, SEED);
             StatisticsObserver statisticsObserver = new StatisticsObserver(50);
+
+            numberGenerator.NumberChanged += statisticsObserver.OnNextNumber;
             numberGenerator.StartNumberGeneration();
 
             //Act
@@ -48,6 +50,7 @@ namespace NumberGenerator.Test
             //Arrange
             RandomNumberGenerator numberGenerator = new RandomNumberGenerator(0, SEED);
             StatisticsObserver statisticsObserver = new StatisticsObserver(50);
+            numberGenerator.NumberChanged += statisticsObserver.OnNextNumber;
             numberGenerator.StartNumberGeneration();
 
             //Act
@@ -63,6 +66,7 @@ namespace NumberGenerator.Test
             //Arrange
             RandomNumberGenerator numberGenerator = new RandomNumberGenerator(0, SEED);
             StatisticsObserver statisticsObserver = new StatisticsObserver(5000);
+            numberGenerator.NumberChanged += statisticsObserver.OnNextNumber;
             numberGenerator.StartNumberGeneration();
 
             //Act
@@ -78,6 +82,7 @@ namespace NumberGenerator.Test
             //Arrange
             RandomNumberGenerator numberGenerator = new RandomNumberGenerator(0, SEED);
             StatisticsObserver statisticsObserver = new StatisticsObserver(5000);
+            numberGenerator.NumberChanged += statisticsObserver.OnNextNumber;
             numberGenerator.StartNumberGeneration();
 
             //Act
@@ -93,6 +98,7 @@ namespace NumberGenerator.Test
             //Arrange
             RandomNumberGenerator numberGenerator = new RandomNumberGenerator(0, SEED);
             StatisticsObserver statisticsObserver = new StatisticsObserver(5000);
+            numberGenerator.NumberChanged += statisticsObserver.OnNextNumber;
             numberGenerator.StartNumberGeneration();
 
             //Act
@@ -138,6 +144,7 @@ namespace NumberGenerator.Test
             //Arrange
             RandomNumberGenerator numberGenerator = new RandomNumberGenerator(0, SEED);
             RangeObserver rangeObserver = new RangeObserver(5, 200, 300);
+            numberGenerator.NumberChanged += rangeObserver.OnNextNumber;
             numberGenerator.StartNumberGeneration();
 
             //Act
@@ -153,6 +160,7 @@ namespace NumberGenerator.Test
             //Arrange
             RandomNumberGenerator numberGenerator = new RandomNumberGenerator(0, SEED);
             QuickTippObserver quickTippObserver = new QuickTippObserver();
+            numberGenerator.NumberChanged += quickTippObserver.OnNextNumber;
             numberGenerator.StartNumberGeneration();
 
             //Act
@@ -168,6 +176,7 @@ namespace NumberGenerator.Test
             //Arrange
             RandomNumberGenerator numberGenerator = new RandomNumberGenerator(0, SEED);
             QuickTippObserver quickTippObserver = new QuickTippObserver();
+            numberGenerator.NumberChanged += quickTippObserver.OnNextNumber;
             numberGenerator.StartNumberGeneration();
 
             //Act
