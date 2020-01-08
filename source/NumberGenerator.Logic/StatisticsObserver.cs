@@ -47,7 +47,7 @@ namespace NumberGenerator.Logic
 
         #region Constructors
 
-        public StatisticsObserver(IObservable numberGenerator, int countOfNumbersToWaitFor) : base(numberGenerator, countOfNumbersToWaitFor)
+        public StatisticsObserver(int countOfNumbersToWaitFor) : base(countOfNumbersToWaitFor)
         {
 
         }
@@ -60,7 +60,7 @@ namespace NumberGenerator.Logic
         {
             return $"{nameof(BaseObserver)} [CountOfNumbersReceived='{CountOfNumbersReceived}', CountOfNumbersToWaitFor='{CountOfNumbersToWaitFor}'] => {nameof(StatisticsObserver)} [Min='{Min}', Max='{Max}', Sum='{Sum}', Avg='{Avg}']";
         }
-        public override void OnNextNumber(int number)
+        public override void OnNextNumber(object sender, int number)
         {
             if (number <= Min)
             {
@@ -71,7 +71,7 @@ namespace NumberGenerator.Logic
                 Max = number;
             }
             Sum += number;
-            base.OnNextNumber(number);
+            base.OnNextNumber(sender, number);
         }
 
         #endregion

@@ -35,7 +35,8 @@ namespace NumberGenerator.Logic
 
         #region Constructors
 
-        public RangeObserver(IObservable numberGenerator, int numberOfHitsToWaitFor, int lowerRange, int upperRange) : base(numberGenerator, int.MaxValue)
+        public RangeObserver(int numberOfHitsToWaitFor, int lowerRange, int upperRange) 
+            : base(int.MaxValue)
         {
             if (numberOfHitsToWaitFor < 1 || lowerRange > upperRange)
             {
@@ -55,9 +56,9 @@ namespace NumberGenerator.Logic
             return $"{nameof(NumbersOfHitsToWaitFor)}: {NumbersOfHitsToWaitFor}, {nameof(NumbersInRange)}: {NumbersInRange}, {nameof(UpperRange)}: {UpperRange}, {nameof(LowerRange)}: {LowerRange}";
         }
 
-        public override void OnNextNumber(int number)
+        public override void OnNextNumber(object sender, int number)
         {
-            base.OnNextNumber(number);
+            base.OnNextNumber(sender, number);
 
             if (number >= LowerRange && number <= UpperRange)
             {
@@ -72,7 +73,7 @@ namespace NumberGenerator.Logic
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"   >> {this.GetType().Name}: Got '{NumbersInRange}' numbers in the configured range => I am not interested in new numbers anymore => Detach().");
                 Console.ResetColor();
-                _numberGenerator.NumberChanged -= OnNextNumber;
+                (sender as RandomNumberGenerator).NumberChanged -= OnNextNumber;
             }
         }
 

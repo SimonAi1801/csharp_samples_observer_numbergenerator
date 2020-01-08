@@ -21,7 +21,7 @@ namespace NumberGenerator.Test
 
 
             //Act
-            StatisticsObserver statisticsObserver = new StatisticsObserver(numberGenerator, -45);
+            StatisticsObserver statisticsObserver = new StatisticsObserver( -45);
 
             //Assert
             Assert.Fail("ArgumentException was expected!");
@@ -32,7 +32,7 @@ namespace NumberGenerator.Test
         {
             //Arrange
             RandomNumberGenerator numberGenerator = new RandomNumberGenerator(0, SEED);
-            StatisticsObserver statisticsObserver = new StatisticsObserver(numberGenerator, 50);
+            StatisticsObserver statisticsObserver = new StatisticsObserver(50);
             numberGenerator.StartNumberGeneration();
 
             //Act
@@ -47,7 +47,7 @@ namespace NumberGenerator.Test
         {
             //Arrange
             RandomNumberGenerator numberGenerator = new RandomNumberGenerator(0, SEED);
-            StatisticsObserver statisticsObserver = new StatisticsObserver(numberGenerator, 50);
+            StatisticsObserver statisticsObserver = new StatisticsObserver(50);
             numberGenerator.StartNumberGeneration();
 
             //Act
@@ -62,7 +62,7 @@ namespace NumberGenerator.Test
         {
             //Arrange
             RandomNumberGenerator numberGenerator = new RandomNumberGenerator(0, SEED);
-            StatisticsObserver statisticsObserver = new StatisticsObserver(numberGenerator, 5000);
+            StatisticsObserver statisticsObserver = new StatisticsObserver(5000);
             numberGenerator.StartNumberGeneration();
 
             //Act
@@ -77,7 +77,7 @@ namespace NumberGenerator.Test
         {
             //Arrange
             RandomNumberGenerator numberGenerator = new RandomNumberGenerator(0, SEED);
-            StatisticsObserver statisticsObserver = new StatisticsObserver(numberGenerator, 5000);
+            StatisticsObserver statisticsObserver = new StatisticsObserver(5000);
             numberGenerator.StartNumberGeneration();
 
             //Act
@@ -92,7 +92,7 @@ namespace NumberGenerator.Test
         {
             //Arrange
             RandomNumberGenerator numberGenerator = new RandomNumberGenerator(0, SEED);
-            StatisticsObserver statisticsObserver = new StatisticsObserver(numberGenerator, 5000);
+            StatisticsObserver statisticsObserver = new StatisticsObserver(5000);
             numberGenerator.StartNumberGeneration();
 
             //Act
@@ -111,7 +111,7 @@ namespace NumberGenerator.Test
 
 
             //Act
-            RangeObserver statisticsObserver = new RangeObserver(numberGenerator, 5, 15, 10);
+            RangeObserver statisticsObserver = new RangeObserver(5, 15, 10);
 
             //Assert
             Assert.Fail("ArgumentException was expected!");
@@ -126,7 +126,7 @@ namespace NumberGenerator.Test
 
 
             //Act
-            RangeObserver statisticsObserver = new RangeObserver(numberGenerator, -2, 15, 10);
+            RangeObserver statisticsObserver = new RangeObserver(-2, 15, 10);
 
             //Assert
             Assert.Fail("ArgumentException was expected!");
@@ -137,7 +137,7 @@ namespace NumberGenerator.Test
         {
             //Arrange
             RandomNumberGenerator numberGenerator = new RandomNumberGenerator(0, SEED);
-            RangeObserver rangeObserver = new RangeObserver(numberGenerator, 5, 200, 300);
+            RangeObserver rangeObserver = new RangeObserver(5, 200, 300);
             numberGenerator.StartNumberGeneration();
 
             //Act
@@ -152,7 +152,7 @@ namespace NumberGenerator.Test
         {
             //Arrange
             RandomNumberGenerator numberGenerator = new RandomNumberGenerator(0, SEED);
-            QuickTippObserver quickTippObserver = new QuickTippObserver(numberGenerator);
+            QuickTippObserver quickTippObserver = new QuickTippObserver();
             numberGenerator.StartNumberGeneration();
 
             //Act
@@ -167,7 +167,7 @@ namespace NumberGenerator.Test
         {
             //Arrange
             RandomNumberGenerator numberGenerator = new RandomNumberGenerator(0, SEED);
-            QuickTippObserver quickTippObserver = new QuickTippObserver(numberGenerator);
+            QuickTippObserver quickTippObserver = new QuickTippObserver();
             numberGenerator.StartNumberGeneration();
 
             //Act

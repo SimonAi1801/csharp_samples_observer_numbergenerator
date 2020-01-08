@@ -11,7 +11,7 @@ namespace NumberGenerator.Logic
     /// Zwischen der Generierung der einzelnen Zufallsnzahlen erfolgt jeweils eine Pause.
     /// Die Generierung erfolgt so lange, solange Beobachter registriert sind.
     /// </summary>
-    public class RandomNumberGenerator : IObservable
+    public class RandomNumberGenerator
     {
         #region Constants
 
@@ -26,7 +26,7 @@ namespace NumberGenerator.Logic
         private readonly Random _random;
         private int _delay;
         #endregion
-
+        public event EventHandler<int> NumberChanged;
         #region Constructors
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace NumberGenerator.Logic
         /// <param name="number">Die generierte Zahl.</param>
         public void NotifyObservers(int number)
         {
-            NumberChanged.Invoke(number);
+            NumberChanged?.Invoke(this, number);
         }
 
         #endregion
@@ -93,7 +93,6 @@ namespace NumberGenerator.Logic
                 Task.Delay(_delay);
             }
         }
-        public NextNumberHandler NumberChanged { get; set; }
         #endregion
     }
 

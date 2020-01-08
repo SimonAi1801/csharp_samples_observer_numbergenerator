@@ -11,8 +11,8 @@ namespace NumberGenerator.Logic
     {
         #region Fields
 
-        private IObservable _numberGenerator;
         private int _tippCount = 0;
+
         #endregion
 
         #region Properties
@@ -24,18 +24,16 @@ namespace NumberGenerator.Logic
 
         #region Constructor
 
-        public QuickTippObserver(IObservable numberGenerator)
+        public QuickTippObserver()
         {
             QuickTippNumbers = new List<int>();
-            _numberGenerator = numberGenerator;
-            _numberGenerator.NumberChanged += OnNextNumber;
         }
 
         #endregion
 
         #region Methods
 
-        public void OnNextNumber(int number)
+        public void OnNextNumber(object sender, int number)
         {
             CountOfNumbersReceived++;
             if (number >= 1 && number <= 45 && !QuickTippNumbers.Contains(number))
@@ -49,7 +47,7 @@ namespace NumberGenerator.Logic
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"   >> {this.GetType().Name}: Got a full Quick-Tipp => I am not interested in new numbers anymore => Detach().");
                 Console.ResetColor();
-                _numberGenerator.NumberChanged -= OnNextNumber;
+                (sender as RandomNumberGenerator).NumberChanged -= OnNextNumber;
             }
         }
 
